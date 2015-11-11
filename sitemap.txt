@@ -1,0 +1,11 @@
+
+http://m-hatanaka.github.io/archive.html
+http://m-hatanaka.github.io/atom.xml
+http://m-hatanaka.github.io/categories.html
+http://m-hatanaka.github.io/index.html
+http://m-hatanaka.github.io/pages.html
+http://m-hatanaka.github.io/rss.xml
+http://m-hatanaka.github.io/sitemap.txt
+http://m-hatanaka.github.io/tags.html
+
+http://m-hatanaka.github.io/lessons/2015/11/11/introduction-github-jekyll-bootstrap
