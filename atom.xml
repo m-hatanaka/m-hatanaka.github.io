@@ -4,7 +4,7 @@
  <title>技術（テク）メモ</title>
  <link href="http://m-hatanaka.github.io/atom.xml" rel="self"/>
  <link href="http://m-hatanaka.github.io"/>
- <updated>2015-11-11T23:56:58+09:00</updated>
+ <updated>2015-11-17T01:14:33+09:00</updated>
  <id>http://m-hatanaka.github.io</id>
  <author>
    <name>Masanori Hatanaka</name>
@@ -13,24 +13,44 @@
 
  
  <entry>
-   <title>GitHubで技術情報を発信する</title>
-   <link href="http://m-hatanaka.github.io/lessons/2015/11/11/introduction-github-jekyll-bootstrap"/>
-   <updated>2015-11-11T00:00:00+09:00</updated>
-   <id>http://m-hatanaka.github.io/lessons/2015/11/11/introduction-github-jekyll-bootstrap</id>
-   <content type="html">&lt;h1 id=&quot;section&quot;&gt;やったこと&lt;/h1&gt;
+   <title>GitHub Pagesでブログを開設する〜Jekyll-bootstrapで静的ブログを生成〜</title>
+   <link href="http://m-hatanaka.github.io/lessons/2015/11/17/github-jekyll-bootstrap"/>
+   <updated>2015-11-17T00:00:00+09:00</updated>
+   <id>http://m-hatanaka.github.io/lessons/2015/11/17/github-jekyll-bootstrap</id>
+   <content type="html">&lt;h1 id=&quot;section&quot;&gt;はじめに&lt;/h1&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;Jekyllで静的にブログ記事を執筆する環境を構築する&lt;/li&gt;
-  &lt;li&gt;GitHub Pagesを構築する&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;いろいろな技術情報に興味を持って調べるものの、全て中途ハンパになってしまって
+続かない、ということが度々あったので、調べた内容や作ったサンプルコードを
+発信することを始めようと思います。&lt;/p&gt;
 
-&lt;h3 id=&quot;section-1&quot;&gt;環境&lt;/h3&gt;
-&lt;p&gt;端末：Mac (OSX Yosemite 10.10.5)&lt;/p&gt;
+&lt;p&gt;サンプルコードの共有といえば、&lt;a href=&quot;http://github.co.jp&quot;&gt;日本法人&lt;/a&gt;もできたGitHubが王道かと思い
+&lt;a href=&quot;https://pages.github.com&quot;&gt;GitHub Pages&lt;/a&gt;という静的サイトを配信する仕組みもあるとのことなので
+GitHub Pagesにてブログ記事を発信する仕組みを作ってみます。&lt;/p&gt;
 
-&lt;h3 id=&quot;jekyll-bootstrap&quot;&gt;jekyll bootstrap環境構築&lt;/h3&gt;
+&lt;h1 id=&quot;section-1&quot;&gt;静的サイトでブログを発信する&lt;/h1&gt;
 
-&lt;p&gt;参考URL
-&lt;a href=&quot;http://krakenbeal.blogspot.jp/2012/05/ruby-jekyll-jekyll-bootstrap.html&quot;&gt;http://krakenbeal.blogspot.jp/2012/05/ruby-jekyll-jekyll-bootstrap.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;どのようなやり方がいいかちょっと調べたところ、静的サイトジェネレータを用いた方法が一般的の模様。
+いろいろなオープンソースのシステムがあり、それぞれの比較も&lt;a href=&quot;http://qiita.com/okmttdhr/items/82ecb0332835472e905f&quot;&gt;ここ&lt;/a&gt;などで実施されています。&lt;/p&gt;
+
+&lt;p&gt;今回は、ちょっとやり方としては古いみたいですが、枯れてきている方法ということで
+&lt;a href=&quot;http://jekyllbootstrap.com&quot;&gt;Jekyll-Bootstrap&lt;/a&gt;を使ったブログ配信の仕組み導入を試みます。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;システム構成&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Jekyll-Bootstrapはrubyのスクリプトで動作する&lt;/li&gt;
+  &lt;li&gt;jekyllコマンドでmarkdown形式で記載された記事から静的サイトを生成する&lt;/li&gt;
+  &lt;li&gt;github pagesはgitリポジトリにWebサイトをPushすることで公開可能となる&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;jekyll--jekyll-bootstrap&quot;&gt;Jekyllのインストール + Jekyll-Bootstrap環境構築&lt;/h2&gt;
+
+&lt;p&gt;以下の参考URLを参考に環境構築を行いました。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://krakenbeal.blogspot.jp/2012/05/ruby-jekyll-jekyll-bootstrap.html&quot;&gt;http://krakenbeal.blogspot.jp/2012/05/ruby-jekyll-jekyll-bootstrap.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;デフォルトのテーマだと若干寂しかったので、サイトから
+辿れる「the-minimum」のテーマを適用してみました。&lt;/p&gt;
 
 &lt;p&gt;＜ハマった点１＞&lt;/p&gt;
 
@@ -38,7 +58,7 @@
 
 &lt;p&gt;macで環境構築する場合はxcode commandline toolをインストールしないとjekyllのインストールに失敗する模様。&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://qiita.com/tanakahisateru/items/c0eaa25dbde669b282cb]&quot;&gt;http://qiita.com/tanakahisateru/items/c0eaa25dbde669b282cb&lt;/a&gt;に従ってコマンドラインツールのインストールを行うと、jekyllのインストールが可能となった&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://qiita.com/tanakahisateru/items/c0eaa25dbde669b282cb]&quot;&gt;http://qiita.com/tanakahisateru/items/c0eaa25dbde669b282cb&lt;/a&gt;に従ってコマンドラインツールのインストールを行うことで、jekyllのインストールが可能となりました。&lt;/p&gt;
 
 &lt;p&gt;＜ハマった点２＞&lt;/p&gt;
 
@@ -46,21 +66,30 @@
 
 &lt;p&gt;boostrapは最新版のjekyll 3.0に対応していない模様。&lt;/p&gt;
 
-&lt;p&gt;一度jekyllをアンインストールし、gem経由で2.5.3を再インストールすることで起動に成功。&lt;/p&gt;
+&lt;p&gt;一度jekyllをアンインストールし、gem経由で2.5.3を再インストールすることで起動に成功しました。&lt;/p&gt;
 
-&lt;h3 id=&quot;github-pages&quot;&gt;github pagesを作る。&lt;/h3&gt;
+&lt;h2 id=&quot;github-pages&quot;&gt;GitHub Pagesを作る&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://pages.github.com&quot;&gt;https://pages.github.com&lt;/a&gt;に記載の通り実施して公開用のユーザリポジトリを作成する&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://pages.github.com&quot;&gt;https://pages.github.com&lt;/a&gt;に記載の通り実施して公開用のユーザリポジトリを作成します。&lt;/p&gt;
 
 &lt;p&gt;jekyll bootstrap上で生成した記事（_siteフォルダ）の内容を
-リポジトリにPushする&lt;/p&gt;
+リポジトリにコピーし、Pushすることで以下の通り公開することが可能となりました。&lt;/p&gt;
 
-&lt;h1 id=&quot;section-2&quot;&gt;所感&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;http://m-hatanaka.github.io&quot;&gt;http://m-hatanaka.github.io&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;section-3&quot;&gt;まとめと今後の課題&lt;/h1&gt;
+
+&lt;p&gt;今回はGitHub Pagesでブログを発信する方法として、
+Jekyll-Bootstrapを用いたシステムの構築を行いました。
+とりあえず記事を公開するための環境は構築できたので、第一歩としては良かったと思いますが&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;github pagesは静的ページなので、コメント機能等の追加は3rdPartyのクラウドサービスとの連携が必要&lt;/li&gt;
-  &lt;li&gt;ローカルサーバでの記事確認後、githubへのPushまでを一連の操作でできるレビューシステムを作ると便利そう&lt;/li&gt;
+  &lt;li&gt;デザインがイマイチ&lt;/li&gt;
+  &lt;li&gt;コメント機能等を追加したい（静的サイトなので、実現には3rdPartyのクラウドサービス連携が必要）&lt;/li&gt;
+  &lt;li&gt;記事の発行、レビューを容易にする仕組み&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;等、改善したい点は多く出てきましたので少しずつ改善を試みようかと思います。&lt;/p&gt;
 
 </content>
  </entry>

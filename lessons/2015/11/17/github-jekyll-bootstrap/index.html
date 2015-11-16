@@ -7,10 +7,10 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>GitHubで技術情報を発信する</title>
+	<title>GitHub Pagesでブログを開設する〜Jekyll-bootstrapで静的ブログを生成〜</title>
 	<meta name="author" content="Masanori Hatanaka">
 	<link href='/assets/themes/the-minimum/css/style.css' rel="stylesheet" media="all">
-	<link href="http://feeds.feedburner.com/" rel="alternate" title="GitHubで技術情報を発信する" type="application/atom+xml">
+	<link href="http://feeds.feedburner.com/" rel="alternate" title="GitHub Pagesでブログを開設する〜Jekyll-bootstrapで静的ブログを生成〜" type="application/atom+xml">
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js"></script>
 </head>
 <body>
@@ -44,27 +44,47 @@
 			<header>
 				<div class="unit-head">
 					<div class="unit-inner unit-head-inner">
-						<h1 class="h2 entry-title">GitHubで技術情報を発信する</h1>
+						<h1 class="h2 entry-title">GitHub Pagesでブログを開設する〜Jekyll-bootstrapで静的ブログを生成〜</h1>
 					</div><!-- unit-inner -->
 				</div><!-- unit-head -->
 			</header>
 
 			<div class="bd">
 				<div class="entry-content">
-					<h1 id="section">やったこと</h1>
+					<h1 id="section">はじめに</h1>
 
-<ol>
-  <li>Jekyllで静的にブログ記事を執筆する環境を構築する</li>
-  <li>GitHub Pagesを構築する</li>
-</ol>
+<p>いろいろな技術情報に興味を持って調べるものの、全て中途ハンパになってしまって
+続かない、ということが度々あったので、調べた内容や作ったサンプルコードを
+発信することを始めようと思います。</p>
 
-<h3 id="section-1">環境</h3>
-<p>端末：Mac (OSX Yosemite 10.10.5)</p>
+<p>サンプルコードの共有といえば、<a href="http://github.co.jp">日本法人</a>もできたGitHubが王道かと思い
+<a href="https://pages.github.com">GitHub Pages</a>という静的サイトを配信する仕組みもあるとのことなので
+GitHub Pagesにてブログ記事を発信する仕組みを作ってみます。</p>
 
-<h3 id="jekyll-bootstrap">jekyll bootstrap環境構築</h3>
+<h1 id="section-1">静的サイトでブログを発信する</h1>
 
-<p>参考URL
-<a href="http://krakenbeal.blogspot.jp/2012/05/ruby-jekyll-jekyll-bootstrap.html">http://krakenbeal.blogspot.jp/2012/05/ruby-jekyll-jekyll-bootstrap.html</a></p>
+<p>どのようなやり方がいいかちょっと調べたところ、静的サイトジェネレータを用いた方法が一般的の模様。
+いろいろなオープンソースのシステムがあり、それぞれの比較も<a href="http://qiita.com/okmttdhr/items/82ecb0332835472e905f">ここ</a>などで実施されています。</p>
+
+<p>今回は、ちょっとやり方としては古いみたいですが、枯れてきている方法ということで
+<a href="http://jekyllbootstrap.com">Jekyll-Bootstrap</a>を使ったブログ配信の仕組み導入を試みます。</p>
+
+<h2 id="section-2">システム構成</h2>
+
+<ul>
+  <li>Jekyll-Bootstrapはrubyのスクリプトで動作する</li>
+  <li>jekyllコマンドでmarkdown形式で記載された記事から静的サイトを生成する</li>
+  <li>github pagesはgitリポジトリにWebサイトをPushすることで公開可能となる</li>
+</ul>
+
+<h2 id="jekyll--jekyll-bootstrap">Jekyllのインストール + Jekyll-Bootstrap環境構築</h2>
+
+<p>以下の参考URLを参考に環境構築を行いました。</p>
+
+<p><a href="http://krakenbeal.blogspot.jp/2012/05/ruby-jekyll-jekyll-bootstrap.html">http://krakenbeal.blogspot.jp/2012/05/ruby-jekyll-jekyll-bootstrap.html</a></p>
+
+<p>デフォルトのテーマだと若干寂しかったので、サイトから
+辿れる「the-minimum」のテーマを適用してみました。</p>
 
 <p>＜ハマった点１＞</p>
 
@@ -72,7 +92,7 @@
 
 <p>macで環境構築する場合はxcode commandline toolをインストールしないとjekyllのインストールに失敗する模様。</p>
 
-<p><a href="http://qiita.com/tanakahisateru/items/c0eaa25dbde669b282cb]">http://qiita.com/tanakahisateru/items/c0eaa25dbde669b282cb</a>に従ってコマンドラインツールのインストールを行うと、jekyllのインストールが可能となった</p>
+<p><a href="http://qiita.com/tanakahisateru/items/c0eaa25dbde669b282cb]">http://qiita.com/tanakahisateru/items/c0eaa25dbde669b282cb</a>に従ってコマンドラインツールのインストールを行うことで、jekyllのインストールが可能となりました。</p>
 
 <p>＜ハマった点２＞</p>
 
@@ -80,29 +100,38 @@
 
 <p>boostrapは最新版のjekyll 3.0に対応していない模様。</p>
 
-<p>一度jekyllをアンインストールし、gem経由で2.5.3を再インストールすることで起動に成功。</p>
+<p>一度jekyllをアンインストールし、gem経由で2.5.3を再インストールすることで起動に成功しました。</p>
 
-<h3 id="github-pages">github pagesを作る。</h3>
+<h2 id="github-pages">GitHub Pagesを作る</h2>
 
-<p><a href="https://pages.github.com">https://pages.github.com</a>に記載の通り実施して公開用のユーザリポジトリを作成する</p>
+<p><a href="https://pages.github.com">https://pages.github.com</a>に記載の通り実施して公開用のユーザリポジトリを作成します。</p>
 
 <p>jekyll bootstrap上で生成した記事（_siteフォルダ）の内容を
-リポジトリにPushする</p>
+リポジトリにコピーし、Pushすることで以下の通り公開することが可能となりました。</p>
 
-<h1 id="section-2">所感</h1>
+<p><a href="http://m-hatanaka.github.io">http://m-hatanaka.github.io</a></p>
+
+<h1 id="section-3">まとめと今後の課題</h1>
+
+<p>今回はGitHub Pagesでブログを発信する方法として、
+Jekyll-Bootstrapを用いたシステムの構築を行いました。
+とりあえず記事を公開するための環境は構築できたので、第一歩としては良かったと思いますが</p>
 
 <ul>
-  <li>github pagesは静的ページなので、コメント機能等の追加は3rdPartyのクラウドサービスとの連携が必要</li>
-  <li>ローカルサーバでの記事確認後、githubへのPushまでを一連の操作でできるレビューシステムを作ると便利そう</li>
+  <li>デザインがイマイチ</li>
+  <li>コメント機能等を追加したい（静的サイトなので、実現には3rdPartyのクラウドサービス連携が必要）</li>
+  <li>記事の発行、レビューを容易にする仕組み</li>
 </ul>
+
+<p>等、改善したい点は多く出てきましたので少しずつ改善を試みようかと思います。</p>
 
 
 					<div class="meta">
 						<p class="date-publish">
 							Published: 
-							<date class="date-pub" title="2015-11-11T00:00:00+09:00" datetime="2015-11-11T00:00:00+09:00" pubdate>
+							<date class="date-pub" title="2015-11-17T00:00:00+09:00" datetime="2015-11-17T00:00:00+09:00" pubdate>
 							<span class="month"><abbr>November</abbr></span>
-							<span class="day">11</span>
+							<span class="day">17</span>
 							<span class="year">2015</span>
 							</date>
 						</p>
@@ -130,9 +159,11 @@
 
   
      
-    	<li><a href="/tags.html#jekyll-ref">jekyll <span>1</span></a></li>
+    	<li><a href="/tags.html#GitHub-ref">GitHub <span>1</span></a></li>
      
-    	<li><a href="/tags.html#github-ref">github <span>1</span></a></li>
+    	<li><a href="/tags.html#Jekyll-Bootstrap-ref">Jekyll-Bootstrap <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#Jekyll-ref">Jekyll <span>1</span></a></li>
     
   
 
@@ -205,7 +236,7 @@
 		};
 	load('//platform.twitter.com/widgets.js', 'tweetjs');
 	// load('https://apis.google.com/js/plusone.js', 'gplus1js'); // Checkout http://j.mp/ApDgMr for usage html for this is <div class="g-plusone" data-size="medium"></div>
-	// load('//connect.facebook.net/en_US/all.js#xfbml=1', 'fbjssdk'); // Checkout http://j.mp/wZw2xR for using open graph protorol html for this is <div class="fb-like" data-href="/lessons/2015/11/11/introduction-github-jekyll-bootstrap" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="verdana"></div>
+	// load('//connect.facebook.net/en_US/all.js#xfbml=1', 'fbjssdk'); // Checkout http://j.mp/wZw2xR for using open graph protorol html for this is <div class="fb-like" data-href="/lessons/2015/11/17/github-jekyll-bootstrap" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="verdana"></div>
 	}(document, 'script'));
 </script>
 <script>

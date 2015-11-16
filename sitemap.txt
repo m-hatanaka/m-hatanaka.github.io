@@ -8,4 +8,4 @@ http://m-hatanaka.github.io/rss.xml
 http://m-hatanaka.github.io/sitemap.txt
 http://m-hatanaka.github.io/tags.html
 
-http://m-hatanaka.github.io/lessons/2015/11/11/introduction-github-jekyll-bootstrap
+http://m-hatanaka.github.io/lessons/2015/11/17/github-jekyll-bootstrap
